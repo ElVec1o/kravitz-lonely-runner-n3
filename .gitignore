@@ -1,0 +1,12 @@
+# Lake build artifacts
+/.lake/
+**/.lake/
+/build/
+**/build/
+*.olean
+*.ilean
+*.trace
+
+# OS / editor
+.DS_Store
+*.swp
