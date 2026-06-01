@@ -61,8 +61,16 @@ bottom of `KravitzPieceA.lean`) makes the foundations explicit:
 So the **coordinate bound itself rests on only the standard axioms**. `native_decide`
 enters only the finer classification of the small (`r ≤ 30`) triples; it is a
 kernel-external, compiler-trusting tactic, and its use is disclosed here and in the
-source rather than hidden. (Replacing it with kernel-checked `decide` is possible in
-principle but far slower on these enumerations.)
+source rather than hidden.
+
+We *tested* replacing it with kernel-checked `decide`, and it is empirically
+infeasible on commodity hardware: the `r ≤ 30` exhaustiveness check does not reduce
+within practical limits (killed after >4 min, with the elaborator ballooning past
+12 GB into swap), and the rational `mgapQ` certificates do not kernel-reduce at all
+(only the compiled path evaluates them). `native_decide` is the appropriate tool for
+these large finite verifications; a kernel-checked reformulation (integer-arithmetic
+reflection with precomputed witness tables) is feasible in principle and tracked as
+future work.
 
 ## Build
 
