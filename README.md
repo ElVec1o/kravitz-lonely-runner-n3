@@ -1,9 +1,10 @@
 # The n = 3 view-obstruction coordinate bound, formalized in Lean 4
 
-A **sorry-free** Lean 4 / Mathlib formalization of the hard direction of Kravitz's
-Theorem 7.2 for three runners: *a sorted primitive integer triple `(p, q, r)` whose
-maximal-loneliness deficit satisfies `D(p, q, r) ≥ 3/14` has bounded top coordinate
-`r ≤ 30`.* Combined with a finite enumeration, this closes the classification
+A **sorry-free** Lean 4 / Mathlib formalization of the **n = 3 near-equality
+classification** for the view-obstruction / Lonely Runner problem: *a sorted primitive
+integer triple `(p, q, r)` whose maximal-loneliness deficit satisfies
+`D(p, q, r) ≥ 3/14` has bounded top coordinate `r ≤ 30`.* Combined with a finite
+enumeration, this closes the classification
 
 ```
 D(p, q, r) ≥ 3/14   ⟺   (p, q, r) ∈ { (1,2,3), (1,2,6), (1,3,4), (1,5,6), (2,3,5) }
@@ -12,6 +13,12 @@ D(p, q, r) ≥ 3/14   ⟺   (p, q, r) ∈ { (1,2,3), (1,2,6), (1,3,4), (1,5,6), 
 with `(1,2,3)` (where `D = 1/4`) the **unique** primitive triple strictly above the
 `3/14` threshold. This is the `n = 3` input to the 2-dimensional view-obstruction
 bound `δ₂(4) ≤ 3/14`.
+
+This identification of the finitely many near-minimal-loneliness ("near-equality")
+triples was obtained independently by **Yong-Gao Chen** in his work on the
+3-dimensional view-obstruction problem (exact reference per N. Kravitz, private
+communication, 2026). It is **related to but distinct from** Kravitz's Theorem 7.2 —
+see [*Relationship to the literature*](#relationship-to-the-literature) below.
 
 Here `‖x‖` is the distance from `x` to the nearest integer,
 `ML(p,q,r) = maxₜ minᵢ ‖vᵢ·t‖` is the maximal loneliness of the triple, and
@@ -93,7 +100,7 @@ Highlights:
 |---|---|
 | `NearestInteger`, `MaxLoneliness`, `DValue` | core definitions (`‖·‖`, `ML`, `D`) |
 | `Pigeonhole` | the arithmetic-progression covering lemma `ap_hits_interval` |
-| `KravitzCovering` | the double-band covering (Kravitz Lemma 7.1) |
+| `KravitzCovering` | the from-scratch double-band covering lemma (`double_band_*`) |
 | `KravitzStrict` | the strict large-coordinate bound `D < 3/14` for `r > 30` |
 | `D3Classify` | the finite `r ≤ 30` enumeration |
 | `KravitzPieceA` | the capstone `coord_bound` + axiom audit |
@@ -113,10 +120,37 @@ write-up of this formalization is in [`docs/paper_LEAN.md`](docs/paper_LEAN.md);
 accompanying analytical results (`δ₂(4) ≤ 3/14` and the exclusion of `2/7` from
 `S₁(4)`) are released separately.
 
-## Reference
+## Relationship to the literature
+
+An earlier version of this README and the companion write-up described this result as
+a formalization of **Kravitz's Theorem 7.2**. That attribution was **inaccurate and
+has been corrected.** Kravitz's Theorem 7.2 [arXiv:1912.06034, §7] is a statement
+about the *values* of maximal loneliness for three runners:
+
+> **Theorem 7.2 (Kravitz).** Let `v₁, v₂, v₃` be positive integers with
+> `gcd(v₁, v₂, v₃) = 1`. Then either `ML(v₁, v₂, v₃) = s/(3s+1)` for some `s ∈ ℕ`,
+> or `ML(v₁, v₂, v₃) ≥ 1/3`.
+
+What this repository formalizes is a **different** (though closely related) statement:
+a *finiteness / coordinate bound* on the triples of small loneliness — an
+identification of all near-equality cases — rather than the value-spectrum dichotomy
+above. As N. Kravitz noted (private communication, June 2026), that near-equality
+identification was obtained **independently by Y-G Chen**, and these finite-checking
+results are now known to reduce to finite calculations via the later Giri–Kravitz and
+Jain–Kravitz works. Accordingly, the covering lemma in `KravitzCovering.lean`
+(`double_band_*`) is a **from-scratch** lemma written in the spirit of the pair-sum
+loneliness construction of [arXiv:1912.06034, Lemma 7.1]; it is *not* a literal
+transcription of Lemma 7.1. (The `Kravitz…` module/file names are historical and
+retained only to avoid breaking the build.)
+
+## References
 
 N. Kravitz, *Barely lonely runners and very lonely runners*, Combinatorial Theory
 **1** (2021), [arXiv:1912.06034](https://arxiv.org/abs/1912.06034).
+
+Y-G. Chen, work on the 3-dimensional view-obstruction problem (independent source of
+the near-equality classification; exact reference per N. Kravitz, priv. comm. — see
+Chen's *On a conjecture in Diophantine approximations* series, J. Number Theory).
 
 ## License & citation
 

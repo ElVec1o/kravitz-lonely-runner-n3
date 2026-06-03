@@ -1,14 +1,16 @@
 cff-version: 1.2.0
 message: "If you use this formalization, please cite it as below."
-title: "The n=3 view-obstruction coordinate bound (Kravitz Theorem 7.2): a sorry-free Lean 4 formalization"
+title: "The n=3 view-obstruction coordinate bound: a sorry-free Lean 4 formalization"
 abstract: >-
   A sorry-free Lean 4 / Mathlib formalization that every sorted primitive
   integer triple (p, q, r) with maximal-loneliness deficit D(p,q,r) ≥ 3/14 has
-  bounded top coordinate r ≤ 30 — the hard direction of the n = 3
-  view-obstruction / Lonely Runner classification, following Kravitz,
-  Combinatorial Theory 1 (2021). The unbounded tail is closed by an
-  arithmetic-progression covering and the finite remainder by a verified
-  enumeration.
+  bounded top coordinate r ≤ 30 — an identification of the finitely many
+  near-minimal-loneliness ("near-equality") triples for n = 3. This
+  classification was obtained independently by Y-G Chen, and is related to but
+  distinct from Theorem 7.2 of Kravitz, Combinatorial Theory 1 (2021) (which
+  instead characterizes the maximal-loneliness value spectrum). The unbounded
+  tail is closed by an arithmetic-progression covering and the finite remainder
+  by a verified enumeration.
 type: software
 authors:
   - family-names: "Bonfioli"

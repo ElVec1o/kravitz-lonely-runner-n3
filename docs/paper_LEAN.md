@@ -35,14 +35,13 @@ $\approx 560$ declarations, **zero `sorry`**, full build green) establishes:
    (all triples to coordinate $70$; random sampling to coordinate $1000$).
 
 **Update — the coordinate bound is now fully machine-checked.** The
-original "tile + meta-coverage" route was superseded by a literature-found
-**clean proof (Kravitz, *Combin. Theory* 1 (2021), Thm 7.2)**, which we
-formalized in full: a from-scratch *covering* theorem (`double_band_cover`,
-= Kravitz Lemma 7.1) feeding a case dispatch on `gcd(q,r)` (Case A
-pre-jump / mod-3 / the covering sweep). The capstone
-**`D_le_of_not_123`** proves *every sorted primitive triple
-`0<p<q<r` other than `(1,2,3)` has `D ≤ 3/14`* (large `r>30` by Kravitz
-Thm 7.2; small `r≤30` by an exhaustive `native_decide` enumeration), with
+original "tile + meta-coverage" route was superseded by a **direct covering
+proof built from scratch**: a *covering* theorem (`double_band_cover`)
+feeding a case dispatch on `gcd(q,r)` (Case A pre-jump / mod-3 / the
+covering sweep). The capstone **`D_le_of_not_123`** proves *every sorted
+primitive triple `0<p<q<r` other than `(1,2,3)` has `D ≤ 3/14`* (large
+`r>30` by the covering argument; small `r≤30` by an exhaustive
+`native_decide` enumeration), with
 corollary **`unique_above_threshold`** (`D > 3/14 ⟹ (p,q,r)=(1,2,3)`).
 Project-wide **zero `sorry`**. The **strict** bound is now also formalized
 (`double_band_cover_strict` on the interior band `[⌈2M/7⌉+1, ⌊5M/7⌋−1]`,
@@ -175,12 +174,26 @@ meta-coverage" approach documented above was an earlier route whose *sole*
 open step was a **meta-coverage dichotomy** — a Lean proof that every
 primitive triple meets some tile hypothesis (periodic modulo
 $\operatorname{lcm}(1,\dots,30)$, hence not a finite check). That route was
-**superseded** by the literature-found Kravitz Thm 7.2 proof (see the
-abstract), which closes the coordinate bound directly via
-`double_band_cover` and the `gcd(q,r)` dispatch; the meta-coverage lemma is
-therefore **no longer load-bearing**. The tile machinery and the
-from-scratch three-gap theorem (§3) remain `sorry`-free and of independent
-interest, but the coordinate bound no longer depends on them.
+**superseded** by the from-scratch direct covering proof (see the abstract),
+which closes the coordinate bound directly via `double_band_cover` and the
+`gcd(q,r)` dispatch; the meta-coverage lemma is therefore **no longer
+load-bearing**. The tile machinery and the from-scratch three-gap theorem
+(§3) remain `sorry`-free and of independent interest, but the coordinate
+bound no longer depends on them.
+
+**Attribution note (correction).** Earlier drafts of this write-up described
+the result as a formalization of **Kravitz's Theorem 7.2**. That was
+**inaccurate.** Kravitz's Theorem 7.2 [arXiv:1912.06034, §7] is a
+value-spectrum statement — *every triple has $\mathrm{ML}=s/(3s+1)$ for some
+$s\in\mathbb N$ or $\mathrm{ML}\ge 1/3$* — whereas this development formalizes
+the **finiteness / near-equality classification** (the low-loneliness triples
+have bounded coordinates), a related but distinct result obtained
+**independently by Y-G Chen** (exact reference per N. Kravitz, private
+communication, June 2026; these finite-checking results are now known to
+reduce to finite calculations via the later Giri–Kravitz and Jain–Kravitz
+works). The `double_band_*` lemmas and the `Kravitz…` file names are written
+in the spirit of [arXiv:1912.06034, §7 / Lemma 7.1] but are not literal
+transcriptions of it.
 
 In summary, this work provides: (i) a machine-checked proof of the $n=3$
 coordinate bound (axiom-clean `coord_bound`, with the residual finite
