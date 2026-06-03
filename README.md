@@ -108,8 +108,10 @@ it is not used by this result.
 ## Provenance
 
 This repository is a focused, self-contained extraction of the `n = 3` coordinate
-bound from a larger private research project on the view-obstruction spectrum. The
-accompanying analytical paper (`δ₂(4) ≤ 3/14`) is not yet public.
+bound from a larger research project on the view-obstruction spectrum. The companion
+write-up of this formalization is in [`docs/paper_LEAN.md`](docs/paper_LEAN.md); the
+accompanying analytical results (`δ₂(4) ≤ 3/14` and the exclusion of `2/7` from
+`S₁(4)`) are released separately.
 
 ## Reference
 
@@ -120,3 +122,8 @@ N. Kravitz, *Barely lonely runners and very lonely runners*, Combinatorial Theor
 
 Apache-2.0 (see [`LICENSE`](LICENSE)). Citation metadata in
 [`CITATION.cff`](CITATION.cff). Author: **Vico Bonfioli**.
+
+**AI assistance.** The Lean development, exploration, and exposition in this
+repository were assisted by an AI language model (Anthropic's Claude). All
+mathematical claims are the author's responsibility; the formal proofs are
+machine-checked by Lean/Mathlib (axioms disclosed above and in the source).
