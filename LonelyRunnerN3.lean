@@ -62,3 +62,8 @@ import LonelyRunnerN3.KravitzStrict
 -- The finite classification and the capstone `coord_bound`.
 import LonelyRunnerN3.D3Classify
 import LonelyRunnerN3.KravitzPieceA
+
+-- n = 4 companion: U1 family realization lower bound, and the {1,2,3} covering lemma
+-- (combinatorial core of the n = 4 realization upper bound).
+import LonelyRunnerN3.U1FamilyBound
+import LonelyRunnerN3.U2CoveringLemma

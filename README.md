@@ -143,6 +143,21 @@ loneliness construction of [arXiv:1912.06034, Lemma 7.1]; it is *not* a literal
 transcription of Lemma 7.1. (The `Kravitz…` module/file names are historical and
 retained only to avoid breaking the build.)
 
+## Companion modules (n = 4 spectrum)
+
+Two further modules apply the same loneliness infrastructure to the **n = 4** Lonely
+Runner spectrum near `1/4`, supporting the result (proved elementarily, with
+dependency-free verifiers, in the separate `lonely-runner-n4-spectrum` repository) that
+the finite symmetric difference of Jain–Kravitz Theorem 1.3 is exactly `{1/3, 2/7}`:
+
+* `LonelyRunnerN3/U1FamilyBound.lean` — `ML(1,2,3,4j) ≥ j/(4j+1)`, the realization
+  lower bound for the `U¹` family (`D = 1/4 + 1/(16j+4)`). Sorry-free; axioms
+  `[propext, Classical.choice, Quot.sound]`.
+* `LonelyRunnerN3/U2CoveringLemma.lean` — the `{1,2,3}` covering lemma
+  `min(‖n‖,‖2n‖,‖3n‖)_q ≤ ⌊q/4⌋`, the `m`-free combinatorial core to which the `U²`
+  realization upper bound reduces via the substitution `n = (A+8)p`. Sorry-free; axioms
+  `[propext, Quot.sound]`.
+
 ## References
 
 N. Kravitz, *Barely lonely runners and very lonely runners*, Combinatorial Theory
