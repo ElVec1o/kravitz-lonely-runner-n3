@@ -145,18 +145,31 @@ retained only to avoid breaking the build.)
 
 ## Companion modules (n = 4 spectrum)
 
-Two further modules apply the same loneliness infrastructure to the **n = 4** Lonely
-Runner spectrum near `1/4`, supporting the result (proved elementarily, with
-dependency-free verifiers, in the separate `lonely-runner-n4-spectrum` repository) that
-the finite symmetric difference of Jain–Kravitz Theorem 1.3 is exactly `{1/3, 2/7}`:
+Three further modules apply the same loneliness infrastructure to the **n = 4** Lonely
+Runner spectrum near `1/4`. The full, elementary proof of the headline result — that the
+finite symmetric difference of Jain–Kravitz Theorem 1.3 is exactly `{1/3, 2/7}` — together
+with dependency-free exact-rational verifiers, lives in the separate
+`lonely-runner-n4-spectrum` repository. These modules machine-check its statement and its
+two hardest lemmas:
 
-* `LonelyRunnerN3/U1FamilyBound.lean` — `ML(1,2,3,4j) ≥ j/(4j+1)`, the realization
-  lower bound for the `U¹` family (`D = 1/4 + 1/(16j+4)`). Sorry-free; axioms
-  `[propext, Classical.choice, Quot.sound]`.
 * `LonelyRunnerN3/U2CoveringLemma.lean` — the `{1,2,3}` covering lemma
   `min(‖n‖,‖2n‖,‖3n‖)_q ≤ ⌊q/4⌋`, the `m`-free combinatorial core to which the `U²`
-  realization upper bound reduces via the substitution `n = (A+8)p`. Sorry-free; axioms
-  `[propext, Quot.sound]`.
+  realization **upper** bound reduces via the substitution `n = (A+8)p`. Fully proved,
+  sorry-free; axioms `[propext, Quot.sound]`.
+* `LonelyRunnerN3/U1FamilyBound.lean` — `ML(1,2,3,4j) ≥ j/(4j+1)`, the `U¹` realization
+  **lower** bound (`D = 1/4 + 1/(16j+4)`). Fully proved, sorry-free; axioms
+  `[propext, Classical.choice, Quot.sound]`.
+* `LonelyRunnerN3/MasterTheorem.lean` — `Master.symmetric_difference`, the headline
+  statement: the symmetric difference of the realized set and the Jain–Kravitz progression
+  is exactly `{1/3, 2/7}`. The final index arithmetic (`Prog \ Realized = {1/3, 2/7}`) is
+  proved sorry-free; the two **directions** (realization and exclusion) enter as explicit,
+  named hypotheses, documented as proved elementarily in the `lonely-runner-n4-spectrum`
+  repository — the same conditional pattern as the `δ₂` work. `#print axioms` shows only
+  `[propext, Classical.choice, Quot.sound]`, no `sorryAx`.
+
+This is an honest partial formalization: the complete proof is the elementary argument plus
+verifiers in `lonely-runner-n4-spectrum`; here the statement and the two hardest lemmas are
+machine-checked, and the final assembly is verified conditional on the two directions.
 
 ## References
 

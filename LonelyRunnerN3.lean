@@ -67,3 +67,4 @@ import LonelyRunnerN3.KravitzPieceA
 -- (combinatorial core of the n = 4 realization upper bound).
 import LonelyRunnerN3.U1FamilyBound
 import LonelyRunnerN3.U2CoveringLemma
+import LonelyRunnerN3.MasterTheorem
